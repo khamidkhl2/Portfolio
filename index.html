@@ -363,6 +363,18 @@
     </div>
   </section>
 
+  <!-- ===================== CERTIFICATES ===================== -->
+  <section class="certificates" aria-labelledby="certificatesTitle">
+    <div class="certificates__head reveal">
+      <p class="eyebrow">Recognition</p>
+      <h2 class="section-title" id="certificatesTitle">Certificates &amp; achievements.</h2>
+      <p class="section-sub">Selected learning, volunteering, and participation milestones</p>
+    </div>
+    <div class="certificate-marquee" id="certificateScroller" aria-label="Certificates. Scroll horizontally to explore.">
+      <div class="certificate-marquee__track" id="certificateTrack"></div>
+    </div>
+  </section>
+
   <!-- ===================== CONTACT / FOOTER ===================== -->
   <footer class="contact" id="contact">
     <div class="contact__inner reveal">
@@ -377,6 +389,23 @@
     </div>
     <p class="contact__copy">© <span id="year"></span> Khamid Kholmatov · Tashkent, Uzbekistan</p>
   </footer>
+
+  <!-- ===================== CERTIFICATE VIEWER ===================== -->
+  <div class="certificate-viewer" id="certificateViewer" aria-hidden="true">
+    <div class="certificate-viewer__backdrop" data-certificate-close></div>
+    <div class="certificate-viewer__panel" role="dialog" aria-modal="true" aria-labelledby="certificateViewerTitle">
+      <button class="certificate-viewer__close" id="certificateViewerClose" type="button" aria-label="Close certificate" data-certificate-close>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="certificate-viewer__image">
+        <img id="certificateViewerImage" src="" alt="" />
+      </div>
+      <div class="certificate-viewer__caption">
+        <p id="certificateViewerIssuer"></p>
+        <h3 id="certificateViewerTitle"></h3>
+      </div>
+    </div>
+  </div>
 
   <!-- ===================== VOLUNTEERING MODAL ===================== -->
   <div class="community-modal" id="communityModal" aria-hidden="true">

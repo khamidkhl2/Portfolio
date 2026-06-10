@@ -187,6 +187,168 @@
   }); }
 
   /* =========================================================
+     CERTIFICATE MARQUEE + VIEWER
+     ========================================================= */
+  var CERTIFICATES = [
+    {
+      title: "Speak, Learn & Connect Volunteer",
+      issuer: "AUT · Global Shapers Community",
+      image: "assets/img/certificates/speak-learn-connect.jpg",
+      alt: "Certificate of appreciation for volunteering in the Speak, Learn and Connect program"
+    },
+    {
+      title: "Volunteering & Community Engagement",
+      issuer: "American University of Technology",
+      image: "assets/img/certificates/aut-appreciation.jpg",
+      alt: "AUT certificate of appreciation for volunteering and community engagement",
+      portrait: true
+    },
+    {
+      title: "Ramadan Community Service",
+      issuer: "TAWFIQ Charity",
+      image: "assets/img/certificates/tawfiq-appreciation.jpg",
+      alt: "TAWFIQ certificate of appreciation for distributing Iftars during Ramadan"
+    },
+    {
+      title: "Social Media Management",
+      issuer: "Leader School",
+      image: "assets/img/certificates/social-media-management.jpg",
+      alt: "Certificate of completion in Social Media Management"
+    },
+    {
+      title: "Bodybuilding & Fitness Seminar",
+      issuer: "Kevin Levrone Seminar · Tashkent",
+      image: "assets/img/certificates/bodybuilding-fitness.jpg",
+      alt: "Certificate for participating in a Bodybuilding and Fitness seminar"
+    },
+    {
+      title: "International English Olympiad",
+      issuer: "Amity University Tashkent",
+      image: "assets/img/certificates/english-olympiad.jpg",
+      alt: "Certificate of participation in the first International English Olympiad"
+    }
+  ];
+
+  var certificateTrack = el("certificateTrack");
+  var certificateScroller = el("certificateScroller");
+  var certificateViewer = el("certificateViewer");
+  var certificateViewerClose = el("certificateViewerClose");
+  var lastCertificateFocused = null;
+
+  function renderCertificateSet(hidden) {
+    return '<div class="certificate-marquee__set"' + (hidden ? ' aria-hidden="true"' : "") + ">" +
+      CERTIFICATES.map(function (certificate, index) {
+        return '<button class="certificate-card' + (certificate.portrait ? " certificate-card--portrait" : "") +
+          '" type="button" data-certificate-index="' + index + '"' + (hidden ? ' tabindex="-1"' : "") + ">" +
+          '<span class="certificate-card__media"><img src="' + esc(certificate.image) + '" alt="' +
+          (hidden ? "" : esc(certificate.alt)) + '" loading="lazy"></span>' +
+          '<span class="certificate-card__caption"><strong>' + esc(certificate.title) +
+          "</strong><span>" + esc(certificate.issuer) + "</span></span></button>";
+      }).join("") +
+    "</div>";
+  }
+
+  if (certificateTrack) {
+    certificateTrack.innerHTML = renderCertificateSet(false) + renderCertificateSet(true);
+  }
+
+  function openCertificateViewer(index, trigger) {
+    var certificate = CERTIFICATES[index];
+    if (!certificate || !certificateViewer) return;
+    lastCertificateFocused = trigger || null;
+    el("certificateViewerImage").src = certificate.image;
+    el("certificateViewerImage").alt = certificate.alt;
+    el("certificateViewerIssuer").textContent = certificate.issuer;
+    el("certificateViewerTitle").textContent = certificate.title;
+    document.body.style.overflow = "hidden";
+    certificateViewer.classList.add("is-open");
+    certificateViewer.setAttribute("aria-hidden", "false");
+    certificateViewerClose.focus();
+  }
+
+  function closeCertificateViewer() {
+    if (!certificateViewer) return;
+    certificateViewer.classList.remove("is-open");
+    certificateViewer.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    if (lastCertificateFocused) lastCertificateFocused.focus();
+  }
+
+  if (certificateTrack) {
+    certificateTrack.addEventListener("click", function (event) {
+      var card = event.target.closest("[data-certificate-index]");
+      if (!card) return;
+      openCertificateViewer(Number(card.getAttribute("data-certificate-index")), card);
+    });
+  }
+
+  if (certificateScroller) {
+    var certificateDragging = false;
+    var certificateMoved = false;
+    var certificateStartX = 0;
+    var certificateStartScroll = 0;
+
+    certificateScroller.addEventListener("wheel", function (event) {
+      if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
+      var maxScroll = certificateScroller.scrollWidth - certificateScroller.clientWidth;
+      var movingBack = event.deltaY < 0;
+      var atStart = certificateScroller.scrollLeft <= 1;
+      var atEnd = certificateScroller.scrollLeft >= maxScroll - 1;
+      if ((movingBack && atStart) || (!movingBack && atEnd)) return;
+      event.preventDefault();
+      certificateScroller.scrollLeft += event.deltaY;
+    }, { passive: false });
+
+    certificateScroller.addEventListener("pointerdown", function (event) {
+      if (event.button !== undefined && event.button !== 0) return;
+      certificateDragging = true;
+      certificateMoved = false;
+      certificateStartX = event.clientX;
+      certificateStartScroll = certificateScroller.scrollLeft;
+      certificateScroller.classList.add("is-dragging");
+      certificateScroller.setPointerCapture(event.pointerId);
+    });
+
+    certificateScroller.addEventListener("pointermove", function (event) {
+      if (!certificateDragging) return;
+      var delta = event.clientX - certificateStartX;
+      if (Math.abs(delta) > 5) certificateMoved = true;
+      certificateScroller.scrollLeft = certificateStartScroll - delta;
+    });
+
+    function endCertificateDrag(event) {
+      if (!certificateDragging) return;
+      certificateDragging = false;
+      certificateScroller.classList.remove("is-dragging");
+      try { certificateScroller.releasePointerCapture(event.pointerId); } catch (error) {}
+    }
+
+    certificateScroller.addEventListener("pointerup", endCertificateDrag);
+    certificateScroller.addEventListener("pointercancel", endCertificateDrag);
+    certificateScroller.addEventListener("click", function (event) {
+      if (!certificateMoved) return;
+      event.preventDefault();
+      event.stopPropagation();
+      certificateMoved = false;
+    }, true);
+  }
+
+  if (certificateViewer) {
+    certificateViewer.addEventListener("click", function (event) {
+      if (event.target.closest("[data-certificate-close]")) closeCertificateViewer();
+    });
+  }
+
+  document.addEventListener("keydown", function (event) {
+    if (!certificateViewer || !certificateViewer.classList.contains("is-open")) return;
+    if (event.key === "Escape") closeCertificateViewer();
+    if (event.key === "Tab") {
+      event.preventDefault();
+      certificateViewerClose.focus();
+    }
+  });
+
+  /* =========================================================
      RENDER GALLERY STRIP
      ========================================================= */
   var strip = el("strip");
