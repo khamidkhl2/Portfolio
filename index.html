@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Khamid Kholmatov — iOS Developer & Data Science Student</title>
+  <meta name="description" content="Portfolio of Khamid Kholmatov — iOS developer and data science student based in Tashkent, building thoughtful mobile and web products." />
+
+  <meta property="og:title" content="Khamid Kholmatov — Portfolio" />
+  <meta property="og:description" content="iOS Developer · Data Science Student · Tashkent → Germany" />
+  <meta property="og:type" content="website" />
+
+  <script>
+    (function () {
+      var savedTheme = null;
+      try { savedTheme = localStorage.getItem("portfolio-theme"); } catch (e) {}
+      document.documentElement.dataset.theme = savedTheme === "dark" ? "dark" : "light";
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="icon" href="assets/img/avatar.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Ambient animated color field behind the page -->
+  <div class="ambient-bg" aria-hidden="true">
+    <span class="ambient-bg__wash ambient-bg__wash--main"></span>
+    <span class="ambient-bg__wash ambient-bg__wash--bloom"></span>
+    <span class="ambient-bg__orb ambient-bg__orb--violet"></span>
+    <span class="ambient-bg__orb ambient-bg__orb--teal"></span>
+  </div>
+
+  <!-- Cursor-follow glow (decorative) -->
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+  <!-- ===================== NAV ===================== -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#top" class="nav__brand" aria-label="Home" data-magnetic>Khamid<span>.</span></a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark theme" title="Switch to dark theme">
+          <svg class="theme-toggle__sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="3.5"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"></path>
+          </svg>
+          <svg class="theme-toggle__moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20.3 15.5A8.5 8.5 0 0 1 8.5 3.7 8.5 8.5 0 1 0 20.3 15.5Z"></path>
+          </svg>
+        </button>
+        <a href="assets/files/Khamid_Kholmatov_CV.pdf" class="nav__cv" download data-magnetic>CV</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="top">
+    <div class="hero__bg" aria-hidden="true">
+      <span class="hero__spark hero__spark--one"></span>
+      <span class="hero__spark hero__spark--two"></span>
+      <span class="hero__spark hero__spark--three"></span>
+      <span class="hero__spark hero__spark--four"></span>
+      <span class="hero__spark hero__spark--five"></span>
+    </div>
+    <div class="hero__inner">
+      <div class="hero__avatar-wrap load" style="--d:.06s">
+        <img class="hero__avatar" src="assets/img/khamid-portrait.jpg" alt="Portrait of Khamid Kholmatov" />
+      </div>
+      <h1 class="hero__name load" style="--d:.12s">Khamid Kholmatov</h1>
+      <p class="hero__tagline load" style="--d:.2s">iOS Developer&nbsp; · &nbsp;Data Science Student&nbsp; · &nbsp;Tashkent&nbsp;→&nbsp;Germany</p>
+      <p class="hero__intro load" style="--d:.28s">
+        I design and build mobile and web products — from a published iOS prayer
+        companion to AI-assisted tools. Currently studying data science and shipping
+        real apps along the way.
+      </p>
+      <div class="hero__actions load" style="--d:.36s">
+        <a href="#work" class="btn btn--primary" data-magnetic>View Work</a>
+        <a href="assets/files/Khamid_Kholmatov_CV.pdf" class="btn btn--ghost" download data-magnetic>Download CV</a>
+      </div>
+    </div>
+    <a href="#work" class="hero__scroll" aria-label="Scroll to work">
+      <span>Selected work</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+    </a>
+  </section>
+
+  <!-- ===================== WORK (HORIZONTAL STRIP) ===================== -->
+  <section class="work" id="work">
+    <div class="work__head">
+      <div class="section-head reveal">
+        <p class="eyebrow">01 — Portfolio</p>
+        <h2 class="section-title">Featured Work</h2>
+        <p class="section-sub">Selected recent and notable projects</p>
+      </div>
+      <div class="strip__arrows reveal">
+        <button class="strip__arrow" id="prevBtn" aria-label="Previous project" data-magnetic>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="strip__arrow" id="nextBtn" aria-label="Next project" data-magnetic>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <ul class="strip" id="strip" aria-label="Projects">
+      <!-- Cards injected from js/main.js (PROJECTS) -->
+    </ul>
+    <noscript><p class="noscript">Enable JavaScript to browse the project gallery.</p></noscript>
+
+    <div class="strip__footer">
+      <div class="strip__progress" aria-hidden="true"><span id="stripBar"></span></div>
+    </div>
+  </section>
+
+  <!-- ===================== MARQUEE ===================== -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>Swift</span><i>✦</i><span>SwiftUI</span><i>✦</i><span>React Native</span><i>✦</i><span>Python</span><i>✦</i><span>Supabase</span><i>✦</i><span>REST APIs</span><i>✦</i><span>SQL</span><i>✦</i><span>JavaScript</span><i>✦</i><span>App Store</span><i>✦</i>
+      <span>Swift</span><i>✦</i><span>SwiftUI</span><i>✦</i><span>React Native</span><i>✦</i><span>Python</span><i>✦</i><span>Supabase</span><i>✦</i><span>REST APIs</span><i>✦</i><span>SQL</span><i>✦</i><span>JavaScript</span><i>✦</i><span>App Store</span><i>✦</i>
+    </div>
+  </div>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section class="about" id="about">
+    <div class="about__grid">
+      <div class="about__text reveal">
+        <p class="eyebrow">02 — About</p>
+        <h2 class="section-title">A builder who ships.</h2>
+        <p>
+          I’m Khamid — a data science student at the American University of Technology
+          in Tashkent, and a self-taught iOS and web developer. I like building things
+          end-to-end: from the first SwiftUI screen to the App Store release pipeline.
+        </p>
+        <p>
+          Outside of code I tutor beginners in Python, run a small online resale
+          operation, and volunteer with local charity initiatives. I’m currently
+          learning German and planning to continue my studies in Germany.
+        </p>
+      </div>
+      <ul class="about__facts reveal">
+        <li><span class="fact__k">Based in</span><span class="fact__v">Tashkent, Uzbekistan</span></li>
+        <li><span class="fact__k">Studying</span><span class="fact__v">B.Sc. Data Science, AUT</span></li>
+        <li><span class="fact__k">Focus</span><span class="fact__v">iOS · React Native · Web</span></li>
+        <li><span class="fact__k">English</span><span class="fact__v">IELTS 6.5 (B2)</span></li>
+        <li><span class="fact__k">Open to</span><span class="fact__v">Internships &amp; freelance</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== SKILLS ===================== -->
+  <section class="skills">
+    <div class="section-head reveal">
+      <p class="eyebrow">03 — Capabilities</p>
+      <h2 class="section-title">What I work with.</h2>
+    </div>
+    <div class="skills__grid reveal--stagger">
+      <div class="skills__group">
+        <h3>Mobile</h3>
+        <div class="chips"><span>Swift</span><span>SwiftUI</span><span>React Native</span><span>TestFlight</span></div>
+      </div>
+      <div class="skills__group">
+        <h3>Data &amp; Backend</h3>
+        <div class="chips"><span>Python</span><span>Java</span><span>SQL</span><span>Supabase</span><span>REST APIs</span></div>
+      </div>
+      <div class="skills__group">
+        <h3>Web &amp; Tools</h3>
+        <div class="chips"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Git / GitHub</span><span>Xcode</span><span>VS Code</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TIMELINE ===================== -->
+  <section class="timeline-wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">04 — Journey</p>
+      <h2 class="section-title">Education &amp; experience.</h2>
+    </div>
+    <div class="timeline">
+      <div class="timeline__col reveal">
+        <h3 class="timeline__label">Education</h3>
+        <ul class="tl">
+          <li>
+            <h4>B.Sc. Data Science</h4>
+            <p class="tl__org">American University of Technology, Tashkent</p>
+            <span class="tl__date">2025 — Present</span>
+          </li>
+          <li>
+            <h4>General Secondary Education</h4>
+            <p class="tl__org">Leader School — final average 4.61 / 5.0</p>
+            <span class="tl__date">2014 — 2025</span>
+          </li>
+        </ul>
+      </div>
+      <div class="timeline__col reveal">
+        <h3 class="timeline__label">Experience</h3>
+        <ul class="tl">
+          <li>
+            <h4>E-Commerce Operations</h4>
+            <p class="tl__org">Self-employed — sourcing, sales &amp; marketplace growth</p>
+            <span class="tl__date">2024 — Present</span>
+          </li>
+          <li>
+            <h4>Python Tutor &amp; TA</h4>
+            <p class="tl__org">Leader School — taught programming fundamentals</p>
+            <span class="tl__date">2024</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== LANGUAGES ===================== -->
+  <section class="extras extras--languages">
+    <div class="extras__col reveal">
+      <h3 class="timeline__label">Languages</h3>
+      <ul class="bars">
+        <li><span class="bars__name">Russian</span><span class="bars__lvl">Native</span></li>
+        <li><span class="bars__name">Uzbek</span><span class="bars__lvl">Fluent</span></li>
+        <li><span class="bars__name">English</span><span class="bars__lvl">IELTS 6.5 · B2</span></li>
+        <li><span class="bars__name">German</span><span class="bars__lvl">A2 · learning</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== VOLUNTEERING ===================== -->
+  <section class="volunteering" id="volunteering">
+    <div class="volunteering__head reveal">
+      <p class="eyebrow">05 — Community</p>
+      <h2 class="section-title">Volunteering with <em>real-world impact.</em></h2>
+      <p class="volunteering__intro">
+        I help turn community ideas into practical action: organizing events,
+        coordinating volunteers, supporting fundraising, and distributing aid
+        through university and independent charity initiatives.
+      </p>
+    </div>
+
+    <div class="impact-grid reveal--stagger" aria-label="Volunteering impact">
+      <div class="impact-card">
+        <strong>Founding member</strong>
+        <span>AUT Volunteering &amp; Charity Club</span>
+      </div>
+      <div class="impact-card">
+        <strong>7,000+</strong>
+        <span>Ramadan packages distributed through AUT and TAWFIQ</span>
+      </div>
+      <div class="impact-card">
+        <strong>1,000+</strong>
+        <span>People in need supported with food and essential supplies</span>
+      </div>
+      <div class="impact-card">
+        <strong>31,000,000+ UZS</strong>
+        <span>Raised overall for charity initiatives</span>
+      </div>
+    </div>
+
+    <div class="volunteering__subhead reveal">
+      <p class="eyebrow">Organizations</p>
+      <h3>Where I contribute</h3>
+    </div>
+
+    <div class="org-grid reveal--stagger">
+      <article class="org-card" style="--org-accent: #28785b">
+        <button class="org-card__open" type="button" data-volunteer-org="aut" aria-label="View AUT Volunteering and Charity Club activities">
+          <span class="org-card__top">
+            <span class="org-card__mark">
+              <img src="assets/img/aut-volunteering-logo.jpg" alt="AUT Volunteering and Charity Club logo" />
+            </span>
+            <span class="org-card__date">October 2025 — Present</span>
+          </span>
+          <span class="org-card__role">Founding member · Active volunteer</span>
+          <strong class="org-card__title">AUT Volunteering &amp; Charity Club</strong>
+          <span class="org-card__description">
+            I helped establish the club at American University of Technology,
+            supporting events, fundraising, community visits, and aid campaigns.
+          </span>
+          <span class="org-card__tags">
+            <span>Event planning</span><span>Logistics</span><span>Fundraising</span><span>Aid distribution</span>
+          </span>
+          <span class="org-card__cta">View activities <span aria-hidden="true">→</span></span>
+        </button>
+        <a href="https://t.me/aut_volunteers" target="_blank" rel="noopener">
+          Telegram channel
+          <span aria-hidden="true">↗</span>
+        </a>
+      </article>
+
+      <article class="org-card" style="--org-accent: #126187">
+        <button class="org-card__open" type="button" data-volunteer-org="tawfiq" aria-label="View TAWFIQ Charity activities">
+          <span class="org-card__top">
+            <span class="org-card__mark">
+              <img src="assets/img/tawfiq-charity-logo.jpg" alt="TAWFIQ Charity logo" />
+            </span>
+            <span class="org-card__date">April 2024 — Present</span>
+          </span>
+          <span class="org-card__role">Charity volunteer</span>
+          <strong class="org-card__title">TAWFIQ Charity</strong>
+          <span class="org-card__description">
+            I join recurring Ramadan campaigns, helping prepare and distribute
+            dates and water to people in need across the community.
+          </span>
+          <span class="org-card__tags">
+            <span>Ramadan campaigns</span><span>Package preparation</span><span>Aid distribution</span><span>Community service</span>
+          </span>
+          <span class="org-card__cta">View activities <span aria-hidden="true">→</span></span>
+        </button>
+        <a href="https://t.me/tawfiqcharity" target="_blank" rel="noopener">
+          Telegram channel
+          <span aria-hidden="true">↗</span>
+        </a>
+      </article>
+
+      <article class="org-card">
+        <button class="org-card__open" type="button" data-volunteer-org="slc" aria-label="View Speak, Learn and Connect activities">
+          <span class="org-card__top">
+            <span class="org-card__mark">
+              <img src="assets/img/global-shapers-logo.jpg" alt="Global Shapers Community logo" />
+            </span>
+            <span class="org-card__date">November 2025</span>
+          </span>
+          <span class="org-card__role">Program volunteer</span>
+          <strong class="org-card__title">Speak, Learn &amp; Connect</strong>
+          <span class="org-card__description">
+            A youth-development program connected with Global Shapers,
+            focused on communication, leadership, and community engagement.
+          </span>
+          <span class="org-card__tags">
+            <span>Youth development</span><span>Communication</span><span>Leadership</span><span>Community engagement</span>
+          </span>
+          <span class="org-card__cta">View activities <span aria-hidden="true">→</span></span>
+        </button>
+        <a href="https://www.globalshapers.org/" target="_blank" rel="noopener">
+          Global Shapers website
+          <span aria-hidden="true">↗</span>
+        </a>
+      </article>
+    </div>
+
+    <div class="volunteering__subhead reveal">
+      <p class="eyebrow">Capabilities</p>
+      <h3>Skills developed through volunteering</h3>
+    </div>
+
+    <div class="volunteer-skills skills__grid reveal--stagger">
+      <div class="skills__group">
+        <h3>Organization</h3>
+        <div class="chips"><span>Teamwork</span><span>Event organization</span><span>Volunteer coordination</span></div>
+      </div>
+      <div class="skills__group">
+        <h3>Community</h3>
+        <div class="chips"><span>Community outreach</span><span>Public communication</span><span>Working with diverse groups</span></div>
+      </div>
+      <div class="skills__group">
+        <h3>Leadership</h3>
+        <div class="chips"><span>Leadership &amp; initiative</span><span>Fundraising support</span><span>Real-world problem-solving</span><span>Social responsibility</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT / FOOTER ===================== -->
+  <footer class="contact" id="contact">
+    <div class="contact__inner reveal">
+      <p class="contact__eyebrow">06 — Let’s connect</p>
+      <h2 class="contact__head">Have a project or<br/>an opportunity?</h2>
+      <a class="contact__email" href="mailto:khamidkhl@gmail.com" data-magnetic>khamidkhl@gmail.com</a>
+      <div class="contact__links">
+        <a href="https://github.com/khamidkhl2" target="_blank" rel="noopener">GitHub</a>
+        <a href="tel:+998909982605">+998 90 998 26 05</a>
+        <a href="assets/files/Khamid_Kholmatov_CV.pdf" download>Download CV</a>
+      </div>
+    </div>
+    <p class="contact__copy">© <span id="year"></span> Khamid Kholmatov · Tashkent, Uzbekistan</p>
+  </footer>
+
+  <!-- ===================== VOLUNTEERING MODAL ===================== -->
+  <div class="community-modal" id="communityModal" aria-hidden="true">
+    <div class="community-modal__backdrop" data-community-close></div>
+    <div class="community-modal__panel" role="dialog" aria-modal="true" aria-labelledby="communityModalTitle">
+      <button class="community-modal__close" id="communityModalClose" type="button" aria-label="Close volunteering activities" data-community-close>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <header class="community-modal__head">
+        <span class="community-modal__mark" id="communityModalMark"></span>
+        <div>
+          <p id="communityModalRole"></p>
+          <h3 id="communityModalTitle"></h3>
+          <p id="communityModalIntro"></p>
+        </div>
+      </header>
+      <div class="community-modal__activities" id="communityModalActivities"></div>
+      <a class="community-modal__channel" id="communityModalChannel" href="#" target="_blank" rel="noopener" hidden>
+        Open Telegram channel <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ===================== PROJECT MODAL ===================== -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal__backdrop" data-close></div>
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal__close" id="modalClose" aria-label="Close" data-close>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="modal__media">
+        <img id="modalImg" src="" alt="" />
+        <div class="modal__gallery" id="modalGallery" aria-label="Project photo placeholders" hidden></div>
+        <span class="modal__year" id="modalYear"></span>
+      </div>
+      <div class="modal__body">
+        <p class="modal__eyebrow" id="modalEyebrow"></p>
+        <h3 class="modal__title" id="modalTitle"></h3>
+        <div class="modal__summary" id="modalSummary"></div>
+        <div id="modalHighlightsWrap">
+          <h4 class="modal__sub">Highlights</h4>
+          <ul class="modal__highlights" id="modalHighlights"></ul>
+        </div>
+        <div class="modal__tags" id="modalTags"></div>
+        <div class="modal__access" id="modalAccess" hidden>
+          <span>Private access password</span>
+          <code id="modalPassword"></code>
+        </div>
+        <div class="modal__links" id="modalLinks"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
