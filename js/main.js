@@ -75,7 +75,7 @@
       ],
       highlights: [],
       tags: ["SwiftUI", "Core Location", "Local Notifications", "Speech Recognition", "Sign in with Apple", "Google Auth", "Supabase", "App Store"],
-      links: [{ label: "View on App Store", href: "#", primary: true }]
+      links: [{ label: "View on App Store", href: "https://apps.apple.com/uz/app/safa-prayer/id6762632634", primary: true }]
     },
     {
       id: "fridgy",
@@ -491,12 +491,6 @@
   });
 
   updateStrip();
-  window.requestAnimationFrame(function () {
-    if (PROJECTS.length > 1 && strip.scrollLeft < 2) {
-      strip.scrollLeft = step();
-      updateStrip();
-    }
-  });
 
   /* =========================================================
      PROJECT MODAL
